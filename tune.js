@@ -37,6 +37,40 @@ Tune.prototype.tonicize = function(newTonic) {
 	this.tonic = newTonic
 }
 
+/* Return data in the mode you are in (freq, ratio, or midi) for the closest frequency to the input frequency */
+
+Tune.prototype.tune = function(input){
+
+    var octave = 0;
+    var smallest;
+    var defOctave;
+    var freq;
+    var note;
+
+    while (!defOctave) {
+        freq = this.scale[0] * this.tonic;
+        if (input < freq * Math.pow(2, octave)) {
+            octave -= 1;
+        } else if (input => freq * Math.pow(2, octave + 1)) {
+            octave += 1;
+        } else {
+            defOctave = octave;
+        }
+    }
+
+    input = input * Math.pow(2, defOctave)
+
+    for (var i = 0, l = this.scale.length; i < l; i++) {
+        var scale = this.scale[i];
+        var difference = input - scale;
+        if (!smallest || smallest > difference) {
+            smallest = difference;
+            note = i;
+        }
+    }
+
+    return this.note(note,defOctave);
+}
 
 /* Return data in the mode you are in (freq, ratio, or midi) */
 
