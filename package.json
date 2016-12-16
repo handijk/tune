@@ -1,5 +1,5 @@
 {
-  "name": "TuneJS",
+  "name": "tune",
   "version": "1.0.0",
   "description": "Tune.js is a web audio tuning library of microtonal and just intonation scales. Tune.js supports over 3,000 historical tunings and temperaments, ported from the vast Scala tuning archive via the Microtuner files compiled and documented by Victor Cerullo.",
   "main": "tune.js",
